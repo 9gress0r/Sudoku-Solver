@@ -3,7 +3,7 @@ A powerful tool to solve a sudoku puzzle!!!
 
 To start using this tool you just should launch a "main.py" file
 
-All you need to do is just to enter your table without any spaces, only press Enter after typing a single row
+All you need to do is just to enter your table using zeroes instead of empty cells, only press Enter after typing a single row
 
 Example input:
 
