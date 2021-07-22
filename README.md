@@ -4,6 +4,7 @@ A powerful tool to solve a sudoku puzzle!!!
 To start using this tool you just should launch a "main.py" file
 
 All you need to do is just to enter your table without any spaces, only press Enter after typing a single row
+
 Example input:
 
 
@@ -34,5 +35,6 @@ Example output:
     +----------RAW----------+  +---------FINAL---------+
 
 If the tool stucks after entering a table, that means that the tool can't solve the problem
+
 Thank's for reading, would be happy to see your edits or advices
 
