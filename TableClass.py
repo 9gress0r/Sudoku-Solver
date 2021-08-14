@@ -44,12 +44,12 @@ class Table:
 
         return self.table[row]
 
-    def is_validLine(line):
+    def is_validLine(self, line):
         """ Checks is a line valid """
 
         logs = []
 
-        for item in pos_nums:
+        for item in self.pos_nums:
             if line.count(item) == 1:
                 logs.append(True)
             else:
@@ -57,12 +57,12 @@ class Table:
 
         return all(logs)
 
-    def is_validSquare(square):
+    def is_validSquare(self, square):
         """ Checks is a square valid """
 
         logs = []
 
-        for item in pos_nums:
+        for item in self.pos_nums:
             if square.count(item) == 1:
                 logs.append(True)
             else:
@@ -73,14 +73,14 @@ class Table:
     def check_vertical_lines(self):
         """ Checks all vertical lines in a table """
 
-        logs = [is_validLine(get_ver_line(self.table, col)) for col in range(9)]
+        logs = [self.is_validLine(self.get_ver_line(self.table, col)) for col in range(9)]
 
         return all(logs)
 
     def check_horizontal_lines(self):
         """ Checks all horizontal lines in a table """
 
-        logs = [is_validLine(line) for line in self.table]
+        logs = [self.is_validLine(line) for line in self.table]
 
         return all(logs)
 
@@ -92,15 +92,15 @@ class Table:
         for item in range(0, 7, 3):
             line1, line2, line3 = self.table[item], self.table[item + 1], self.table[item + 2]
             for num in range(1, 4):
-                square = get_square(line1, line2, line3, num)
-                logs.append(is_validSquare(square))
+                square = self.get_square(line1, line2, line3, num)
+                logs.append(self.is_validSquare(square))
 
         return all(logs)
 
     def is_validTable(self):
         """ Checks is a table valid """
 
-        logs = [check_vertical_lines(self.table), check_horizontal_lines(self.table), check_squares(self.table)]
+        logs = [self.check_vertical_lines(self.table), self.check_horizontal_lines(self.table), self.check_squares(self.table)]
         return all(logs)
     
     def get_sq(self, num):
