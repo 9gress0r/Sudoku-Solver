@@ -101,6 +101,7 @@ class Table:
         """ Checks is a table valid """
 
         logs = [self.check_vertical_lines(self.table), self.check_horizontal_lines(self.table), self.check_squares(self.table)]
+        
         return all(logs)
     
     def get_sq(self, num):
@@ -139,7 +140,7 @@ class Table:
 
         return square
 
-    def av_nums(self, row, col):
+    def available_nums(self, row, col):
         """ 
         Returns an array of available numbers for given cell
         """
@@ -175,7 +176,7 @@ class Table:
             if item not in hor and item not in ver and item not in sq
         ]
 
-    def indexes(self):
+    def find_holes(self):
         """
         Returns an array of indexes of cells that can be changed
         """
@@ -188,19 +189,23 @@ class Table:
                     result.append((row, col))
 
         return result
-
+    
     def solve(self):
         """
         Main function for solving a table
         """
 
-        holes = self.indexes()
+        holes = {(row, col):self.available_nums(row, col) for row, col in self.find_holes()}
+        was_changed = False
 
-        for _ in range(50, -1, -1):
-            for row, col in holes:
-                nums = self.av_nums(row, col)
-                if len(nums) == 1:
-                    self.table[row][col] = nums[0]
-                    holes.remove((row, col))
+        for key, val in holes.items():
+            if len(val) == 1:
+                was_changed = True
 
+                row, col = key
+                self.table[row][col] = val[0]
+        
+        if was_changed:
+            self.solve()
+        
         return self.table
