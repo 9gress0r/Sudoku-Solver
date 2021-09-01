@@ -2,15 +2,15 @@ class Table:
 
     def __init__(self, table):
         self.table = table
-        self.pos_nums = list(range(1,10))
-    
+        self.pos_nums = list(range(1, 10))
+
     def __call__(self):
         return self.table
 
     def get_square(line1, line2, line3, num):
         """ Getting a square """
 
-        square = []    
+        square = []
 
         if num == 1:
             for index in range(3):
@@ -101,9 +101,9 @@ class Table:
         """ Checks is a table valid """
 
         logs = [self.check_vertical_lines(self.table), self.check_horizontal_lines(self.table), self.check_squares(self.table)]
-        
+
         return all(logs)
-    
+
     def get_sq(self, num):
         """
         Gets all numbers in a square by a number and turn it into the array
@@ -111,7 +111,7 @@ class Table:
 
         square = []
 
-        if num in [1,2,3]:
+        if num in [1, 2, 3]:
             for row in range(3):
                 if num == 1:
                     square.extend(self.table[row][:3])
@@ -120,7 +120,7 @@ class Table:
                 elif num == 3:
                     square.extend(self.table[row][6:9])
 
-        elif num in [4,5,6]:
+        elif num in [4, 5, 6]:
             for row in range(3, 6):
                 if num == 4:
                     square.extend(self.table[row][:3])
@@ -129,8 +129,8 @@ class Table:
                 elif num == 6:
                     square.extend(self.table[row][6:9])
 
-        elif num in [7,8,9]:
-            for row in range(6,9):
+        elif num in [7, 8, 9]:
+            for row in range(6, 9):
                 if num == 7:
                     square.extend(self.table[row][:3])
                 elif num == 8:
@@ -141,7 +141,7 @@ class Table:
         return square
 
     def available_nums(self, row, col):
-        """ 
+        """
         Returns an array of available numbers for given cell
         """
 
@@ -189,13 +189,13 @@ class Table:
                     result.append((row, col))
 
         return result
-    
+
     def solve(self):
         """
         Main function for solving a table
         """
 
-        holes = {(row, col):self.available_nums(row, col) for row, col in self.find_holes()}
+        holes = {(row, col): self.available_nums(row, col) for row, col in self.find_holes()}
         was_changed = False
 
         for key, val in holes.items():
@@ -204,8 +204,8 @@ class Table:
 
                 row, col = key
                 self.table[row][col] = val[0]
-        
+
         if was_changed:
             self.solve()
-        
+
         return self.table
