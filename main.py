@@ -1,10 +1,9 @@
 import output
-from _input import getting_input
 from TableClass import Table
 
-raw = Table(getting_input())
+raw = Table.get()
 
-table1 = output.make_table(raw(), False)
+table1 = output.make_table(raw, False)
 
 final = raw.solve()
 
