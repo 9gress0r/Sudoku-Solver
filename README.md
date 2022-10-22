@@ -34,7 +34,4 @@ Example output:
     | 8 9 0 | 5 4 0 | 3 0 7 |  | 8 9 1 | 5 4 6 | 3 2 7 |
     +----------RAW----------+  +---------FINAL---------+
 
-If the tool stucks after entering a table, that means that the tool can't solve the problem
-
 Thank's for reading, would be happy to see your edits or advices
-
