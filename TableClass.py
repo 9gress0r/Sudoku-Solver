@@ -4,8 +4,12 @@ class Table:
         self.table = table
         self.pos_nums = list(range(1, 10))
 
-    def __call__(self):
-        return self.table
+    def get():
+        """ Getting a table """
+
+        print('Enter a table:')
+        table = [list(map(int, list(input()))) for _ in range(9)]
+        return Table(table)
 
     def get_square(line1, line2, line3, num):
         """ Getting a square """
@@ -38,9 +42,7 @@ class Table:
         return [item[num] for item in self.table]
 
     def get_hor_line(self, row):
-        """
-        Gets all numbers in a horizontal line by a number and turn it into the array
-        """
+        """ Gets all numbers in a horizontal line by a number and turn it into the array """
 
         return self.table[row]
 
@@ -198,6 +200,12 @@ class Table:
         holes = {(row, col): self.available_nums(row, col) for row, col in self.find_holes()}
         was_changed = False
 
+        lengths = [len(holes[key]) for key in holes]
+
+        if 1 not in lengths and len(lengths) > 0:
+            print("Can't solve this table")
+            exit()
+
         for key, val in holes.items():
             if len(val) == 1:
                 was_changed = True
@@ -208,4 +216,4 @@ class Table:
         if was_changed:
             self.solve()
 
-        return self.table
+        return Table(self.table)
