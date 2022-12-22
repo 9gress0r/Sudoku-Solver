@@ -1,12 +1,19 @@
-import output
-from TableClass import Table
+from engine import get_table, print_tables_combined, Table
+from copy import deepcopy
 
-raw = Table.get()
+def main():
+    raw_table = get_table()
 
-table1 = output.make_table(raw, False)
+    # Create a table object
+    # NOTE: We have to copy the table because we are going to modify it, so we don't want to modify the original table
 
-final = raw.solve()
+    solved = deepcopy(raw_table)
 
-table2 = output.make_table(final, True)
+    # Solve the table
+    solved.solve()
 
-print(output.table_splitted(table1, table2))
+    # Print the tables
+    print_tables_combined(raw_table, solved)
+
+if __name__ == '__main__':
+    main()
